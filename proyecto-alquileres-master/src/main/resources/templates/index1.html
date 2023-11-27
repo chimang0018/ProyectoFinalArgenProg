@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <style>
+.container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.card {
+  width: 18rem;
+  margin: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.card-img-top {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #333;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
+</style>
+
+    <head th:replace= "/fragments/head :: head" </head>
+    
+
+    <body>
+        <nav class="navbar navbar-expand-lg navBar">
+            <div class="containerImg">
+                <a href="/" class="navbar-brand d-flex align-items-center">
+                    <img class="logo" src="/img/logo4.png" alt="Img logo egg">
+                </a>
+            </div>
+                        </div>
+              <div class="search-bar">
+            <input type="text" placeholder="Buscar propiedades">
+        </div>
+            
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+                        
+            <div class="collapse navbar-collapse elementosNav" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto elementos">
+                             <li class="nav-item dropdown">
+                        <a class="nav-link  dropdown-toggle" th:if="${session.usuariosession != null}"href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Perfil
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" th:href="@{/perfil}" >Editar Perfil</a></li>
+                            <li><hr class="dropdown-divider"></li>
+
+                            <li><a class="dropdown-item" href="/logout" >Cerrar Sesión</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " th:if="${session.usuariosession == null}" href="/registrar" id="navbarDropdown" role="button" aria-expanded="false">
+                            Registrate!
+                        </a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " th:if="${session.usuariosession == null}" href="/login" id="navbarDropdown" role="button" aria-expanded="false">
+                            LOGIN!
+                        </a>
+
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <div class="card">
+        <img src="/img/ejemplo1.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Nombre del Producto 1</h5>
+          <p class="card-text">Detalles del producto 1.</p>
+          <a href="#" class="btn btn-primary">Ver más</a>
+        </div>
+      </div>
+    
+    <!-- Repite el código anterior para cada tarjeta -->
+    <!-- Asegúrate de cambiar los detalles para cada producto -->
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <div class="card">
+        <img src="/img/ejemplo2.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Nombre del Producto 1</h5>
+          <p class="card-text">Detalles del producto 1.</p>
+          <a href="#" class="btn btn-primary">Ver más</a>
+        </div>
+      </div>
+    </div>
+    <!-- Repite el código anterior para cada tarjeta -->
+    <!-- Asegúrate de cambiar los detalles para cada producto -->
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <div class="card">
+        <img src="/img/ejemplo3.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Nombre del Producto 1</h5>
+          <p class="card-text">Detalles del producto 1.</p>
+          <a href="#" class="btn btn-primary">Ver más</a>
+        </div>
+      </div>
+    </div>
+    <!-- Repite el código anterior para cada tarjeta -->
+    <!-- Asegúrate de cambiar los detalles para cada producto -->
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <div class="card">
+        <img src="/img/ejemplo4.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Nombre del Producto 1</h5>
+          <p class="card-text">Detalles del producto 1.</p>
+          <a href="#" class="btn btn-primary">Ver más</a>
+        </div>
+      </div>
+    </div>
+    <!-- Repite el código anterior para cada tarjeta -->
+    <!-- Asegúrate de cambiar los detalles para cada producto -->
+  </div>
+</div>
+        <header class="header">
+            <section class="contenedorMain">
+                <div class="PropZona">
+                </div>
+                <div class="container contenedorLibros">
+                    <p class="tituloLibros" th:if="${session.usuariosession != null}" th:text=" 'Hola de vuelta '+ ${session.usuariosession.nombre} "></p>
+</div>
+                </div>
+                <div class="bg-circle-1 bg-circle"></div>
+                <div class="bg-circle-2 bg-circle"></div>
+                <div class="bg-circle-3 bg-circle"></div>
+                <div class="bg-circle-4 bg-circle"></div>
+            </section>
+        </header>
+
+        <footer class="text-muted py-5">
+            <div class="containerFooter">
+                <p class="mb-1">Copyright © 2023 PropZona<br>but please download and customize it for yourself!</p>
+                <p class="mb-0">Ayuda<a href="/"><br>Cómo alquilar en línea</a> or read our <a href="../getting-started/introduction/">Términos y condiciones</a>.</p>
+                <p class="float-end mb-1">
+                    <a href="#" style="text-decoration:none"><span>⬆️</span>Subir</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/css/index.css">
+    </body>
+
+</html>
+<!--una imagen que va a representar el logo de una pagina web llamada propzona. la funcion de dicha pagina sera mostrar alquiler de propiedades para fiestas y eventos.-->
