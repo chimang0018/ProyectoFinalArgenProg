@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+        <style>
+.container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.card {
+  width: 18rem;
+  margin: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.card-img-top {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #333;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
+</style>
+<head th:replace= "/fragments/head :: head" </head>
+<body>
+        <nav class="navbar navbar-expand-lg navBar">
+            <div class="containerImg">
+                <a href="/" class="navbar-brand d-flex align-items-center">
+                    <img class="logo" src="/img/logo4.png" alt="Img logo">
+                </a>
+            </div>
+              <div class="search-bar">
+            <input type="text" placeholder="Buscar propiedades">
+        </div>
+            
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse elementosNav" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto elementos">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" th:if="${session.usuariosession != null}" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Propieades
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                            <li><a class="dropdown-item" sec:authorize="hasRole('PROPIETARIO')" th:href="@{/propiedad/registrar}">Crear Propiedad</a></li>
+                            <li><hr sec:authorize="hasRole('PROPIETARIO')" class="dropdown-divider"></li>
+
+                            <li><a class="dropdown-item" th:href="@{/propiedad/listar}">Listar propiedades</a></li>
+                        </ul>
+                    </li>
+<!--                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" th:if="${session.usuariosession != null}" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Autores
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                            <li><a class="dropdown-item" sec:authorize="hasRole('ADMIN')" th:href="@{/autor/registrar}">Crear Autor</a></li>
+                            <li><hr sec:authorize="hasRole('ADMIN')" class="dropdown-divider"></li>
+
+                            <li><a class="dropdown-item" th:href="@{/autor/listar}">Listar Autores</a></li>
+                        </ul>
+                    </li>
+
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" th:if="${session.usuariosession != null}" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Editoriales
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                            <li><a class="dropdown-item" sec:authorize="hasRole('ADMIN')" th:href="@{/editorial/registrar}">Crear Editorial</a></li>
+                            <li><hr sec:authorize="hasRole('ADMIN')" class="dropdown-divider"></li>
+
+                            <li><a class="dropdown-item" th:href="@{/editorial/listar}">Listar Editoriales</a></li>
+                        </ul>
+                    </li>-->
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Perfil
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" th:href="@{/perfil}" >Editar Perfil</a></li>
+                            <li><hr class="dropdown-divider"></li>
+
+                            <li><a class="dropdown-item" href="/logout" >Cerrar Sesión</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link " th:if="${session.usuariosession == null}" href="/registrar" id="navbarDropdown" role="button" aria-expanded="false">
+                            Registrate!
+                        </a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " th:if="${session.usuariosession == null}" href="/login" id="navbarDropdown" role="button" aria-expanded="false">
+                            LOGIN!
+                        </a>
+
+                    </li>
+                </ul>
+            </div>
+        </nav>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <div class="card">
+        <img src="/img/ejemplo1.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Nombre del Producto 1</h5>
+          <p class="card-text">Detalles del producto 1.</p>
+          <a href="#" class="btn btn-primary">Ver más</a>
+        </div>
+      </div>
+    
+    <!-- Repite el código anterior para cada tarjeta -->
+    <!-- Asegúrate de cambiar los detalles para cada producto -->
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <div class="card">
+        <img src="/img/ejemplo2.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Nombre del Producto 1</h5>
+          <p class="card-text">Detalles del producto 1.</p>
+          <a href="#" class="btn btn-primary">Ver más</a>
+        </div>
+      </div>
+    </div>
+    <!-- Repite el código anterior para cada tarjeta -->
+    <!-- Asegúrate de cambiar los detalles para cada producto -->
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <div class="card">
+        <img src="/img/ejemplo3.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Nombre del Producto 1</h5>
+          <p class="card-text">Detalles del producto 1.</p>
+          <a href="#" class="btn btn-primary">Ver más</a>
+        </div>
+      </div>
+    </div>
+    <!-- Repite el código anterior para cada tarjeta -->
+    <!-- Asegúrate de cambiar los detalles para cada producto -->
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <div class="card">
+        <img src="/img/ejemplo4.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Nombre del Producto 1</h5>
+          <p class="card-text">Detalles del producto 1.</p>
+          <a href="#" class="btn btn-primary">Ver más</a>
+        </div>
+      </div>
+    </div>
+    <!-- Repite el código anterior para cada tarjeta -->
+    <!-- Asegúrate de cambiar los detalles para cada producto -->
+  </div>
+</div>
+        <header class="header">
+            <section class="contenedorMain">
+                <div class="tituloBiblioteca">
+                </div>
+                <div class="container contenedorLibros">
+                    <p class="tituloLibros" th:if="${session.usuariosession != null}" th:text=" 'Hola de vuelta '+ ${session.usuariosession.nombre} "></p>
+              </div>
+                </div>
+                <div class="bg-circle-1 bg-circle"></div>
+                <div class="bg-circle-2 bg-circle"></div>
+                <div class="bg-circle-3 bg-circle"></div>
+                <div class="bg-circle-4 bg-circle"></div>
+            </section>
+        </header>
+
+        <footer class="text-muted py-5">
+            <div class="containerFooter">
+                <p class="mb-1">Copyright © 2023 PropZona<br>Derechos reservados</p>
+                <p class="mb-0">Queres hacer una consulta? <a href="/"><br>Ingresa aqui</a> o leé nuestros <a href="../getting-started/introduction/">Terminos y condiciones</a>.</p>
+                <p class="float-end mb-1">
+                    <a href="#" style="text-decoration:none"><span>⬆️</span> Vuelve a arriba</a>
+                </p>
+            </div>
+        </footer>
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/css/index.css">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    </body>
+
+</html>
