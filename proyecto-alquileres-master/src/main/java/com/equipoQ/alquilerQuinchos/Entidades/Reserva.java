@@ -6,7 +6,9 @@ import javax.persistence.*;
 import org.hibernate.annotations.*;
 import javax.persistence.Entity;
 import java.time.LocalDateTime;
+import lombok.Data;
 @Entity
+@Data
 public class Reserva {
 
 @Id
@@ -21,37 +23,6 @@ private Date duracion;
 
 //Reserva, y que tendría los atributos: id, fecha, hora, duración, estado, etc.
 
-   public Reserva() {
-   }
-
-   public Reserva(String id, LocalDate fecha, Date duracion) {
-      this.id = id;
-      this.fecha = fecha;
-      this.duracion = duracion;
-   }
-
-   public String getId() {
-      return id;
-   }
-
-   public void setId(String id) {
-      this.id = id;
-   }
-
-   public LocalDate getFecha() {
-      return fecha;
-   }
-
-   public void setFecha(LocalDate fecha) {
-      this.fecha = fecha;
-   }
-
-   public Date getDuracion() {
-      return duracion;
-   }
-
-   public void setDuracion(Date duracion) {
-      this.duracion = duracion;
-   }
+ 
 
 }

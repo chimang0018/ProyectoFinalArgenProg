@@ -4,7 +4,9 @@ import javax.persistence.*;
 import org.hibernate.annotations.*;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import lombok.Data;
 @Entity
+@Data
 public class Publicacion {
 
    @Id
@@ -34,82 +36,6 @@ public class Publicacion {
    @OneToMany(mappedBy = "publicacion", cascade = CascadeType.ALL)
    private List<Imagen> imagenes;
 
-   public Publicacion() {
-   }
-
-   public Publicacion(String id, String titulo, String descripcion, Float preciofinal, String categoria, Propiedad propiedad, List<Comentario> comentarios, List<Imagen> imagenes) {
-      this.id = id;
-      this.titulo = titulo;
-      this.descripcion = descripcion;
-      this.preciofinal = preciofinal;
-      this.categoria = categoria;
-      this.propiedad = propiedad;
-      this.comentarios = comentarios;
-      this.imagenes = imagenes;
-   }
-
-   public String getId() {
-      return id;
-   }
-
-   public void setId(String id) {
-      this.id = id;
-   }
-
-   public String getTitulo() {
-      return titulo;
-   }
-
-   public void setTitulo(String titulo) {
-      this.titulo = titulo;
-   }
-
-   public String getDescripcion() {
-      return descripcion;
-   }
-
-   public void setDescripcion(String descripcion) {
-      this.descripcion = descripcion;
-   }
-
-   public Float getPreciofinal() {
-      return preciofinal;
-   }
-
-   public void setPreciofinal(Float preciofinal) {
-      this.preciofinal = preciofinal;
-   }
-
-   public String getCategoria() {
-      return categoria;
-   }
-
-   public void setCategoria(String categoria) {
-      this.categoria = categoria;
-   }
-
-   public Propiedad getPropiedad() {
-      return propiedad;
-   }
-
-   public void setPropiedad(Propiedad propiedad) {
-      this.propiedad = propiedad;
-   }
-
-   public List<Comentario> getComentarios() {
-      return comentarios;
-   }
-
-   public void setComentarios(List<Comentario> comentarios) {
-      this.comentarios = comentarios;
-   }
-
-   public List<Imagen> getImagenes() {
-      return imagenes;
-   }
-
-   public void setImagenes(List<Imagen> imagenes) {
-      this.imagenes = imagenes;
-   }
+   
    
 }

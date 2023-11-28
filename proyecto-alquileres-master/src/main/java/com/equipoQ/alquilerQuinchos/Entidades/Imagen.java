@@ -2,7 +2,9 @@ package com.equipoQ.alquilerQuinchos.Entidades;
 import javax.persistence.*;
 import org.hibernate.annotations.*;
 import javax.persistence.Entity;
+import lombok.Data;
 @Entity
+@Data
 public class Imagen {
    @Id
    @GeneratedValue(generator = "uuid")
@@ -17,56 +19,6 @@ public class Imagen {
     @ManyToOne
    private Publicacion publicacion;
 
-   public Imagen() {
-   }
-
-   public Imagen(String id, String mime, String nombre, byte[] contenido, Publicacion publicacion) {
-      this.id = id;
-      this.mime = mime;
-      this.nombre = nombre;
-      this.contenido = contenido;
-      this.publicacion = publicacion;
-   }
-
-   public String getId() {
-      return id;
-   }
-
-   public void setId(String id) {
-      this.id = id;
-   }
-
-   public String getMime() {
-      return mime;
-   }
-
-   public void setMime(String mime) {
-      this.mime = mime;
-   }
-
-   public String getNombre() {
-      return nombre;
-   }
-
-   public void setNombre(String nombre) {
-      this.nombre = nombre;
-   }
-
-   public byte[] getContenido() {
-      return contenido;
-   }
-
-   public void setContenido(byte[] contenido) {
-      this.contenido = contenido;
-   }
-
-   public Publicacion getPublicacion() {
-      return publicacion;
-   }
-
-   public void setPublicacion(Publicacion publicacion) {
-      this.publicacion = publicacion;
-   }
-
+  
 
 }
