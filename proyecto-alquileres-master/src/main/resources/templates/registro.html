@@ -4,9 +4,6 @@
 <head>
     <meta charset="utf-8">
     <title>QYE Quinchos Y Eventos</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Free HTML Templates" name="keywords">
-    <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -111,10 +108,26 @@
         <input type="text" class="form-control p-4" placeholder="Email" th:value="${email}" name="email" />
     </div>                            
     <div class="form-group">
-        <input type="text" class="form-control p-4" placeholder="Contraseña" th:value="${password}" name="password" />
+        <div class="input-group">
+            <input type="password" class="form-control p-4" placeholder="Contraseña" th:value="${password}" name="password" id="password" />
+            <!-- Agrega el siguiente botón para alternar la visibilidad de la contraseña -->
+            <div class="input-group-append">
+                <button type="button" class="btn btn-light btn-sm" onclick="togglePasswordVisibility('password')">
+                    <i class="fa fa-eye"></i>
+                </button>
+            </div>
+
     </div>
     <div class="form-group">
-        <input type="text" class="form-control p-4" placeholder="Repetir Contraseña" th:value="${password2}" name="password2" />
+        <div class="input-group">
+        <input type="password" class="form-control p-4" placeholder="Repetir Contraseña" th:value="${password2}" name="password2" id="password2" />
+            <!-- Agrega el siguiente botón para alternar la visibilidad de la contraseña -->
+            <div class="input-group-append">
+                <button type="button" class="btn btn-light btn-sm" onclick="togglePasswordVisibility('password2')">
+                    <i class="fa fa-eye"></i>
+                </button>
+            </div>
+
     </div>
     <div class="form-group">
         <select name="rol" class="custom-select px-4" style="height: 47px;">
@@ -135,9 +148,6 @@
         <button class="btn btn-primary btn-block py-3" type="submit">Registrarse</button>
     </div>
 </form>
-
-
-
                         </div>
                     </div>
                 </div>
@@ -161,6 +171,21 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <!-- Botón mostrar ocultar contraseña Javascript -->
+    <script>
+        function togglePasswordVisibility(passwordFieldId) {
+            const passwordField = document.getElementById(passwordFieldId);
+            const currentType = passwordField.type;
+    
+            if (currentType === 'password') {
+                passwordField.type = 'text';
+            } else {
+                passwordField.type = 'password';
+            }
+        }
+    </script>
+
 </body>
 
 </html>
