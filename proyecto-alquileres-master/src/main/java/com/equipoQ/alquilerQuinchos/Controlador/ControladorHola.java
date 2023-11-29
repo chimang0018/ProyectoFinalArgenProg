@@ -1,16 +1,20 @@
 package com.equipoQ.alquilerQuinchos.Controlador;
-import com.equipoQ.alquilerQuinchos.Entidades.*;
-import com.equipoQ.alquilerQuinchos.Enumeraciones.*;
-import com.equipoQ.alquilerQuinchos.Excepciones.*;
-import com.equipoQ.alquilerQuinchos.Servicios.*;
-import java.util.logging.*;
-import javax.servlet.http.*;
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.security.access.prepost.*;
-import org.springframework.stereotype.*;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.ui.*;
-import org.springframework.web.multipart.*;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.equipoQ.alquilerQuinchos.Entidades.Usuario;
+import com.equipoQ.alquilerQuinchos.Enumeraciones.Rol;
+import com.equipoQ.alquilerQuinchos.Excepciones.MiExcepcion;
+import com.equipoQ.alquilerQuinchos.Servicios.UsuarioServicio;
 
 // Usar @RequestMapping a nivel de clase para indicar la ruta base del controlador
 
