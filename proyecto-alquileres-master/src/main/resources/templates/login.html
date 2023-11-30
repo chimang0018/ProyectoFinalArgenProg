@@ -1,79 +1,164 @@
 <!DOCTYPE html>
+<html lang="es">
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-    <head>
-        <meta charset="utf-8" >
-        <title>Biblioteca Egg - Acceder</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-        <link rel="stylesheet" href="/css/formulario.css">
-    </head>
-    <body>
+<head>
+    <meta charset="utf-8">
+    <title>QYE Quinchos Y Eventos</title>
 
-        <nav class="navbar navbar-expand-lg navBar">
-            <div class="containerImg">
-                <a href="#" class="navbar-brand d-flex align-items-center">
-                         <img class="logo" src="/img/logo4.png" width="90" height="90" alt="Img logo egg">
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- Agrega el enlace al CDN de Font Awesome para obtener los íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navbar Start -->
+    <div class="container-fluid position-relative nav-bar p-0">
+        <div class="container-lg position-relative p-0 px-lg-5" style="z-index: 9;">
+            <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
+                <a href="/" class="navbar-brand">
+                    <h1 class="m-1 text-primary"><span class="text-dark">Q</span>Y<span class="text-dark">E</h1>QUINCHOS Y EVENTOS<span class="text-dark"></h1>
                 </a>
-              </div>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse elementosNav" id="navbarNavDropdown">
-              <ul class="navbar-nav ms-auto elementos">
-                <li class="nav-item">
-                    <a class="nav-link " href="/registrar" id="navbarDropdown" role="button" aria-expanded="false">
-                        Registrate!
-                    </a>
-                    
-                </li>
+                </button>
 
-              </ul>
-            </div>
-          </nav>
-
-        
-
-        <div class="container-fluid m-5 contenedor">
-            <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError" >
-            <div class="card-body">
-                <h5 class="card-title">Error!</h5>
-                <p class="card-text" th:text="${error}"></p>
-            </div>
-        </div>
-        <div th:if="${exito != null}" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
-            <div class="card-body">
-                <h5 class="card-title">Exito!</h5>
-                <p class="card-text" th:text="${exito}"></p>
-            </div>
-        </div>
-
-            <form class="formulario" th:action="@{/logincheck}" method="POST">
-
-
-                <div class="form-group my-3">
-                    <h3 class="card-title">Accede a Q y E!</h3>
-                </div>
-               
-                <div class="form-group my-3">
-                    <input type="email" class="form-control" name="email" placeholder="EMAIL">
-                </div>
-
-                <div class="form-group my-3">
-                    <input type="password" class="form-control" name="password" placeholder="CONTRASEÑA">
-                </div>
-                
-
-                <button type="submit" class="btn btn-primary mt-3 botones">Ingresar!</button>
-            </form>
-
-
-            <section class=" text-center container">
-                <div class="row mt-3">
-                    <div class="divVolver">
-                        <a th:href="@{/}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+ <!-- Botón de inicio de sesión con ícono -->
+               <a th:if="${session.usuariosession != null}" href="/perfil"  class="login-btn">
+                  <i class="fas fa-user-plus"></i> Perfil
+               </a>
+                            
+<a sec:authorize="hasRole('PROPIETARIO')" th:href="@{/propiedad/registrar}" class="register-btn">
+    <i class="fas fa-user-plus"></i> Crear Propiedad
+</a>
+ 
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </section>
+            </nav>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-    </body>
+    </div>
+    <!-- Navbar End -->
+
+
+    <!-- Carousel Start -->
+    <div class="container-fluid p-0">
+        <div id="header-carousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="w-100" src="img/fondo1.jpg" alt="Image">
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        <div class="p-3" style="max-width: 900px;">
+                            <h4 class="text-white text-uppercase mb-md-3">Tu Evento Ideal</h4>
+                            <h1 class="display-3 text-white mb-md-4">Disfrutá de la mejor manera</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="w-100" src="img/fondo2.jpg" alt="Image">
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        <div class="p-3" style="max-width: 900px;">
+                            <h4 class="text-white text-uppercase mb-md-3">Tu Evento Ideal</h4>
+                            <h1 class="display-3 text-white mb-md-4">Disfrutá de la mejor manera</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
+                <div class="btn btn-dark" style="width: 45px; height: 45px;">
+                    <span class="carousel-control-prev-icon mb-n2"></span>
+                </div>
+            </a>
+            <a class="carousel-control-next" href="#header-carousel" data-slide="next">
+                <div class="btn btn-dark" style="width: 45px; height: 45px;">
+                    <span class="carousel-control-next-icon mb-n2"></span>
+                </div>
+            </a>
+        </div>
+    </div>
+    <!-- Carousel End -->
+
+
+
+    
+    <!-- Iniciar Start -->
+                </div>
+                <div class="col-lg-40">
+                    <div class="card border-100">
+                        <div class="card-header bg-primary text-center p-40">
+                            <h1 class="text-white m-0">Inicia Sesión</h1>
+                        </div>
+                        <div class="card-body rounded-bottom bg-white p-5">
+                            <form class="formulario" th:action="@{/logincheck}" method="POST">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" name="email" placeholder="Correo">
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="password" class="form-control p-4" placeholder="Contraseña" th:value="${password}" name="password" id="password" />
+                                        <!-- Agrega el siguiente botón para alternar la visibilidad de la contraseña -->
+                                        <div class="input-group-append">
+                                            <button type="button" class="btn btn-light btn-sm" onclick="togglePasswordVisibility('password')">
+                                                <i class="fa fa-eye"></i>
+                                            </button>
+                                        </div>
+                                </div>
+                                <div>
+                                    <button class="btn btn-primary btn-block py-3" type="submit">Iniciar Sesión</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Iniciar End -->
+    
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    
+    <!-- Botón mostrar ocultar contraseña Javascript -->
+    <script>
+        function togglePasswordVisibility(passwordFieldId) {
+            const passwordField = document.getElementById(passwordFieldId);
+            const currentType = passwordField.type;
+    
+            if (currentType === 'password') {
+                passwordField.type = 'text';
+            } else {
+                passwordField.type = 'password';
+            }
+        }
+    </script>
+
+
+</body>
+
 </html>
