@@ -53,28 +53,6 @@ public String registro(@RequestParam String usuarioId, @RequestParam(required = 
     }
     return "index";
 }
-  // @PostMapping("/registro")
-   //public String registro(@RequestParam String usuarioId, @RequestParam(required = false) String id, @RequestParam String direccion, @RequestParam String localidad,
-    //       @RequestParam String provincia, @RequestParam Float precio_base, @RequestParam Boolean wifi, @RequestParam Boolean pileta, @RequestParam Integer capacidad, ModelMap modelo) {
-    //  try {
-     //    // Busca al propietario por su ID de usuario
-      //   Usuario usuario = usuarioServicio.getOne(usuarioId);
-//
-    //     // Crea la publicación
-   //      Publicacion publicacion = new Publicacion();
-  //       // Aquí puedes establecer los atributos de la publicación según sea necesario
-
-  //       // Crea la propiedad
-  //       propiedadServicio.crearPropiedad(usuario, id, direccion, localidad, provincia, publicacion, precio_base, wifi, pileta, capacidad);
-
-  //       modelo.put("Exito", "La propiedad fue cargada correctamente");
-  //    } catch (MiExcepcion ex) {
- //        modelo.put("error", ex.getMessage());
- //        return "propiedad_form.html";
- //     }
- //     return "index";
- //  }
-
    @GetMapping("/listar")
    public String listar(ModelMap modelo) {
       List<Propiedad> propiedades = propiedadServicio.listarPropiedades();
