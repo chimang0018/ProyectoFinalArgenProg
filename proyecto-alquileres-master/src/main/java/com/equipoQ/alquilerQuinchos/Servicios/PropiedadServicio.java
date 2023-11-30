@@ -13,9 +13,9 @@ public class PropiedadServicio {
    @Autowired
    private PropiedadRepositorio propiedadRepositorio;
 
-   @Transactional
-   public void crearPropiedad(Usuario usuario, String id, String direccion, String localidad, String provincia, Publicacion publicacion, Float precio_base, Boolean wifi, Boolean pileta, Integer capacidad) throws MiExcepcion {
-
+  @Transactional
+public void crearPropiedad(Usuario usuario, String id, String direccion, String localidad, String provincia, Publicacion publicacion, Float precio_base, Boolean wifi, Boolean pileta, Integer capacidad) throws MiExcepcion {
+   try {
       validar(usuario, id, direccion, localidad, provincia, publicacion, precio_base, wifi, pileta, capacidad);
 
       Propiedad propiedad = new Propiedad();
@@ -32,7 +32,39 @@ public class PropiedadServicio {
       propiedad.setPileta(pileta);
       propiedad.setCapacidad(capacidad);
       propiedadRepositorio.save(propiedad);
+   } catch (MiExcepcion ex) {
+      // Lanzar la excepción para que sea capturada por el bloque catch en el método registro
+      throw ex;
    }
+
+}
+
+//@Service
+//public class PropiedadServicio {
+
+ //  @Autowired
+ //  private PropiedadRepositorio propiedadRepositorio;
+
+//   @Transactional
+//   public void crearPropiedad(Usuario usuario, String id, String direccion, String localidad, String provincia, Publicacion publicacion, Float precio_base, Boolean wifi, Boolean pileta, Integer capacidad) throws MiExcepcion {
+
+ //     validar(usuario, id, direccion, localidad, provincia, publicacion, precio_base, wifi, pileta, capacidad);
+
+ //     Propiedad propiedad = new Propiedad();
+
+ //     propiedad.setId(id);
+ //     propiedad.setDireccion(direccion);
+ //     propiedad.setAlta(new Date());
+ //     propiedad.setLocalidad(localidad);
+ //     propiedad.setProvincia(provincia);
+ //     propiedad.setUsuario(usuario);
+//      propiedad.setPublicacion(publicacion);
+//      propiedad.setPrecio_base(precio_base);
+//      propiedad.setWifi(wifi);
+//      propiedad.setPileta(pileta);
+//      propiedad.setCapacidad(capacidad);
+ //     propiedadRepositorio.save(propiedad);
+ //  }
 
    public List<Propiedad> listarPropiedades() {
       List<Propiedad> propiedades = new ArrayList();
