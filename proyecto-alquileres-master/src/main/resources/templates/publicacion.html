@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+   <head>
+      <meta charset="utf-8">
+      <title>Publicar Propiedad</title>
+
+
+      <!-- Favicon -->
+      <link href="img/favicon.ico" rel="icon">
+
+      <!-- Google Web Fonts -->
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+
+      <!-- Font Awesome -->
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+      <!-- Libraries Stylesheet -->
+      <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+      <!-- Customized Bootstrap Stylesheet -->
+      <link href="css/style.css" rel="stylesheet">
+      <!-- Agrega el enlace al CDN de Font Awesome para obtener los íconos -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+   </head>
+
+   <body>
+
+      <!-- Navbar Start -->
+      <div class="container-fluid position-relative nav-bar p-0">
+         <div class="container-lg position-relative p-0 px-lg-5" style="z-index: 9;">
+            <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
+               <a href="index.html" class="navbar-brand">
+                  <h1 class="m-1 text-primary"><span class="text-dark">Q</span>Y<span class="text-dark">E</h1>QUINCHOS Y EVENTOS<span class="text-dark"></h1>
+               </a>
+               </button>
+         </div>
+      </div>
+   </div>
+<!-- Navbar End -->
+
+<!-- Cuerpo publicar -->
+        <div class="titulo">
+            <h1 align="center">Registrar una nueva Propiedad</h1>
+        </div>
+
+        <div class="formulario" align="center">
+        <form action="/propiedad/registro" method="post">
+    <div th:if="${error != null}" class="div-error">
+        <h5>Error</h5>
+        <p th:text="${error}"></p>
+    </div>
+
+    <div th:if="${exito != null}" class="div-exito">
+        <h5>Éxito</h5>
+        <p th:text="${exito}"></p>
+    </div>
+    <label class="mb-2">Cargar Propiedad</label>
+    <input type="hidden" name="usuarioId" th:value="${usuario.id}">
+    <input type="number" name="id" placeholder="ID">        
+    <br><br>
+    <input type="text" name="direccion" placeholder="Direccion donde se encuentra la Propiedad">
+    <br><br>
+    <input type="text" name="localidad" placeholder="Localidad donde se encuentra la Propiedad">
+    <br><br>
+    <input type="text" name="provincia" placeholder="Provincia donde se encuentra la Propiedad">
+    <br><br>
+    <input type="number" name="precio_base" placeholder="Precio Base">
+    <br><br>
+    <input type="checkbox" name="wifi" value="true"> Wifi
+    <br><br>
+    <input type="checkbox" name="pileta" value="true"> Pileta
+    <br><br>
+    <input type="number" name="capacidad" placeholder="Capacidad">
+    <br><br>
+
+    <button type="submit" class="btn-registrar">Registrar Propiedad</button>
+</form>
+        </div>
+        
+                  <!-- JavaScript Libraries -->
+                  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+                  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+                  <script src="lib/easing/easing.min.js"></script>
+                  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+                  <script src="lib/tempusdominus/js/moment.min.js"></script>
+                  <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+                  <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+                  <!-- Contact Javascript File -->
+                  <script src="mail/jqBootstrapValidation.min.js"></script>
+                  <script src="mail/contact.js"></script>
+
+                  <!-- Template Javascript -->
+                  <script src="js/main.js"></script>
+
+    </body>
+</html>

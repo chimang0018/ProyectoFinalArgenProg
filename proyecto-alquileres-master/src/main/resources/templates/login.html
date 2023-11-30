@@ -33,17 +33,7 @@
                 <a href="/" class="navbar-brand">
                     <h1 class="m-1 text-primary"><span class="text-dark">Q</span>Y<span class="text-dark">E</h1>QUINCHOS Y EVENTOS<span class="text-dark"></h1>
                 </a>
-                </button>
-
- <!-- Botón de inicio de sesión con ícono -->
-               <a th:if="${session.usuariosession != null}" href="/perfil"  class="login-btn">
-                  <i class="fas fa-user-plus"></i> Perfil
-               </a>
-                            
-<a sec:authorize="hasRole('PROPIETARIO')" th:href="@{/propiedad/registrar}" class="register-btn">
-    <i class="fas fa-user-plus"></i> Crear Propiedad
-</a>
- 
+                </button> 
                             </div>
                         </div>
                     </div>
@@ -117,7 +107,7 @@
                                         </div>
                                 </div>
                                 <div>
-                                    <button class="btn btn-primary btn-block py-3" type="submit">Iniciar Sesión</button>
+                                    <button class="btn btn-primary btn-block py-3" href="/inicio" type="submit">Iniciar Sesión</button>
                                 </div>
                             </form>
                         </div>

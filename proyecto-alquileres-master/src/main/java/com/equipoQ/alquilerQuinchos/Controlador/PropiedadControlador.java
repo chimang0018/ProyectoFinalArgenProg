@@ -17,13 +17,13 @@ public class PropiedadControlador {
    @Autowired
    private UsuarioServicio usuarioServicio;
 
-   @GetMapping("/registrar")
+   @GetMapping("/publicacion")
    public String registrar(ModelMap modelo, @SessionAttribute("usuariosession") Usuario usuario) {
       // Obtener el usuario actual de la sesión
       // Comprobar si el usuario tiene el rol de AGENTE
       if (usuario.getRol() == Rol.PROPIETARIO) {
          modelo.put("usuario", usuario);
-         return "propiedad_form.html";
+         return "publicacion.html";
       } else {
          // Si no, mostrar un mensaje de error y redirigir al inicio
          modelo.put("error", "Solo los agentes pueden registrar propiedades");
@@ -31,7 +31,7 @@ public class PropiedadControlador {
       }
    }
 
-   @PostMapping("/registro")
+   @PostMapping("/publicacion")
    public String registro(@RequestParam String usuarioId, @RequestParam(required = false) String id, @RequestParam String direccion, @RequestParam String localidad,
            @RequestParam String provincia, @RequestParam Float precio_base, @RequestParam Boolean wifi, @RequestParam Boolean pileta, @RequestParam Integer capacidad, ModelMap modelo) {
       try {
@@ -48,7 +48,7 @@ public class PropiedadControlador {
          modelo.put("Exito", "La propiedad fue cargada correctamente");
       } catch (MiExcepcion ex) {
          modelo.put("error", ex.getMessage());
-         return "propiedad_form.html";
+         return "publicacion.html";
       }
       return "index";
    }

@@ -39,24 +39,44 @@
                <a th:if="${session.usuariosession == null}" href="/login" class="login-btn">
                   <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
                </a>
-               <a th:if="${session.usuariosession != null}" href="/perfil"  class="login-btn">
-                  <i class="fas fa-user-plus"></i> Perfil
-               </a>
                <a th:if="${session.usuariosession == null}" href="/registrar" class="register-btn">
                   <i class="fas fa-user-plus"></i> Registrarse
                </a>
 
-               <a sec:authorize="hasRole('PROPIETARIO')" th:href="@{/propiedad/registrar}" class="register-btn">
-                  <i class="fas fa-user-plus"></i> Crear Propiedad
-               </a>
-
-         </div>
+               <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav ml-auto">
+                      <li class="nav-item">
+                          <a sec:authorize="hasRole('PROPIETARIO')" href="/inicio" class="nav-link">
+                              Vista Propietario
+                          </a>
+                      </li>
+                      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                  </button>
+                                  <!-- Botones --> 
+                  <div class="collapse navbar-collapse" th:if="${session.usuariosession != null}" id="navbarNav">
+                      <ul class="navbar-nav ml-auto">
+                          <li class="nav-item">
+                              <div class="nav-link dropdown">
+                                  <button class="btn btn-primary dropdown-toggle" type="button" id="perfilDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      <i class="fas fa-user" ></i> Perfil <i class="fas fa-caret-down"></i>
+                                  </button>
+                                  <div class="dropdown-menu" aria-labelledby="perfilDropdown">
+                                    <a class="dropdown-item"  href="pages/editar_perfil.html"><i class="fas fa-user-edit"></i> Editar Perfil</a>
+                                    <a sec:authorize="hasRole('CLIENTE')" class="dropdown-item" href="#">Mis reservas</a>
+                                      <a class="dropdown-item" sec:authorize="hasRole('PROPIETARIO')" href="pages/mis_publicaciones.html"><i class="fas fa-file-alt"></i> Mis Publicaciones</a>
+                                      <a class="dropdown-item" href="pages/mensajes.html"><i class="fas fa-envelope"></i> Mensajes</a>
+                                      <div class="dropdown-divider"></div>
+                                      <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+                                  </div>
+                              </div>
+                          </li>
+                      </ul>
+                  </div>
+              </nav>
+          </div>
       </div>
-   </div>
-</div>
-</nav>
-</div>
-</div>
 <!-- Navbar End -->
 
 
@@ -106,45 +126,58 @@
    <!-- Booking Start -->
    <div class="container-fluid booking mt-5 pb-5">
       <div class="container pb-5">
-         <div class="bg-light shadow" style="padding: 30px;">
-            <div class="row align-items-center" style="min-height: 60px;">
-               <div class="col-md-10">
-                  <div class="row">
-                     <div class="col-md-3">
-                        <div class="mb-3 mb-md-0">
-                           <select class="custom-select px-4" style="height: 47px;">
-                              <option selected>Localidad</option>
-                              <option value="1">Córdoba</option>
-                              <option value="2">Buenos Aires</option>
-                              <option value="3">Entre Ríos</option>
-                           </select>
-                        </div>
-                     </div>
-                     <div class="col-md-3">
-                        <div class="mb-3 mb-md-0">
-                           <div class="date" id="date1" data-target-input="nearest">
-                              <input type="date" class="form-control p-4 datetimepicker-input" placeholder="Fecha" data-target="#date1" data-toggle="datetimepicker"/>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-md-3">
-                        <div class="mb-3 mb-md-0">
-                           <select class="custom-select px-4" style="height: 47px;">
-                              <option selected>Filtros</option>
-                              <option value="1">Quinchos</option>
-                              <option value="2">Infantiles</option>
-                              <option value="2">Piletas</option>
-                              <option value="2">Eventos Grandes</option>
-                           </select>
-                        </div>
-                     </div>
+          <div class="bg-light shadow" style="padding: 30px;">
+              <div class="row align-items-center" style="min-height: 80px;">
+                  <div class="col-md-9">
+                      <div class="row">
+                          <div class="col-md-3">
+                              <div class="mb-3 mb-md-0">
+                                  <select class="custom-select px-4" style="height: 47px;" id="provincia" onchange="updateLocalidades()">
+                                      <option selected>Provincia</option>
+                                      <option value="EntreRios">Entre Ríos</option>
+                                      <option value="BuenosAires">Buenos Aires</option>
+                                      <option value="Cordoba">Córdoba</option>
+                                      <!-- Agrega más opciones según sea necesario -->
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="col-md-3">
+                              <div class="mb-3 mb-md-0">
+                                  <select class="custom-select px-4" style="height: 47px;" id="localidad">
+                                    <option selected>Localidad</option>
+                                      <!-- Las opciones se llenarán dinámicamente mediante JavaScript -->
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="col-md-3">
+                              <div class="mb-3 mb-md-0">
+                                  <select class="custom-select px-4" style="height: 47px;">
+                                      <option selected>Categorias</option>
+                                      <option value="1">Quinchos</option>
+                                      <option value="2">Infantiles</option>
+                                      <option value="2">Piletas</option>
+                                      <option value="2">Eventos Grandes</option>
+                                  </select>
+                              </div>
+                          </div>
+                  <div class="col-md-3">
+                      <div class="row">
+                          <div class="col-md-8">
+                              <div class="mb-3 mb-md-0">
+                                  <div class="date" id="date1" data-target-input="nearest">
+                                      <input type="date" class="form-control p-4 datetimepicker-input" placeholder="Fecha" data-target="#date1" data-toggle="datetimepicker"/>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-md-3">
+                               <button class="btn btn-primary btn-lg" type="submit">BUSCAR</button>
+                          </div>
+                      </div>
                   </div>
-               </div>
-               <div class="col-md-2">
-                  <button class="btn btn-primary btn-block" type="submit" style="height: 47px; margin-top: -2px;">BUSCAR</button>
-               </div>
-            </div>
-         </div>
+              </div>
+          </div>
+      </div>
+  </div>
          <!-- Booking End -->
 
          <!-- Destination Start -->
@@ -225,6 +258,51 @@
 
                   <!-- Template Javascript -->
                   <script src="js/main.js"></script>
+
+<!-- Filtros de Busqueda -->
+<script>
+   // Función para actualizar las opciones del filtro de Localidad
+   function updateLocalidades() {
+       // Obtener el valor seleccionado en el filtro de Provincia
+       var provinciaSeleccionada = document.getElementById('provincia').value;
+
+       // Obtener el elemento del filtro de Localidad
+       var localidadSelect = document.getElementById('localidad');
+
+       // Limpiar las opciones actuales del filtro de Localidad
+       localidadSelect.innerHTML = '';
+
+       // Agregar opciones según la Provincia seleccionada
+       if (provinciaSeleccionada === 'EntreRios') {
+           var localidadesEntreRios = ['Paraná', 'Rosario del Tala', 'Gualeguaychú', 'Federación', 'Colón', 'Victoria', 'Villa Paranasito', 'La Paz', 'Chajarí', 'Concepción del Uruguay', 'Basavilbaso', 'Gualeguay', 'Nogoyá', 'Concordia', 'Villaguay'];
+           for (var i = 0; i < localidadesEntreRios.length; i++) {
+               var option = document.createElement('option');
+               option.value = localidadesEntreRios[i];
+               option.text = localidadesEntreRios[i];
+               localidadSelect.appendChild(option);
+           }
+       } else if (provinciaSeleccionada === 'BuenosAires') {
+           var localidadesBuenosAires = ['Bahia Blanca', 'Cañuelas', 'Junin', 'La Plata', 'Las Toninas', 'Mar de las Pampas', 'Mar del Tuyú', 'Mar de Ajo', 'Mar del Plata', 'Miramar', 'Monte Hermoso', 'Pinamar', 'Pilar', 'Tandil', 'Tigre', 'Villa gesell'];
+           for (var i = 0; i < localidadesBuenosAires.length; i++) {
+               var option = document.createElement('option');
+               option.value = localidadesBuenosAires[i];
+               option.text = localidadesBuenosAires[i];
+               localidadSelect.appendChild(option);
+           }
+       } else if (provinciaSeleccionada === 'Cordoba') {
+           var localidadesCordoba = ['Córdoba Capital', 'La Cumbrecita', 'Villa Carlos Paz', 'La Falda', 'San Francisco', 'San Carlos Minas','Rio Cuarto', 'San Esteban', 'Valle Hermoso'];
+           for (var i = 0; i < localidadesCordoba.length; i++) {
+               var option = document.createElement('option');
+               option.value = localidadesCordoba[i];
+               option.text = localidadesCordoba[i];
+               localidadSelect.appendChild(option);
+           }
+       }
+       // Puedes agregar más "else if" para otras provincias según sea necesario
+   }
+</script>
+
+ 
 
                   </body>
 
