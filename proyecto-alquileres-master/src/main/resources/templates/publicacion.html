@@ -20,25 +20,59 @@
       <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
       <!-- Customized Bootstrap Stylesheet -->
-      <link href="css/style.css" rel="stylesheet">
+      <link href="/css/style.css" rel="stylesheet">
       <!-- Agrega el enlace al CDN de Font Awesome para obtener los íconos -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
    </head>
 
    <body>
 
-      <!-- Navbar Start -->
-      <div class="container-fluid position-relative nav-bar p-0">
-         <div class="container-lg position-relative p-0 px-lg-5" style="z-index: 9;">
-            <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
-               <a href="index.html" class="navbar-brand">
+    <!-- Navbar Start -->
+    <div class="container-fluid position-relative nav-bar p-0">
+      <div class="container-lg position-relative p-0 px-lg-5" style="z-index: 9;">
+          <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
+              <a href="/" class="navbar-brand">
                   <h1 class="m-1 text-primary"><span class="text-dark">Q</span>Y<span class="text-dark">E</h1>QUINCHOS Y EVENTOS<span class="text-dark"></h1>
-               </a>
-               </button>
-         </div>
-      </div>
-   </div>
-<!-- Navbar End -->
+                  </a>
+                  </button>
+   
+                  <a th:if="${session.usuariosession == null}" href="/login" class="login-btn">
+                     <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                  </a>
+                  <a th:if="${session.usuariosession == null}" href="/registrar" class="register-btn">
+                     <i class="fas fa-user-plus"></i> Registrarse
+                  </a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+              </button>
+                              <!-- Botones -->   
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                      <div class="nav-link dropdown">
+                          <button class="btn btn-primary dropdown-toggle" type="button" id="perfilDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <i class="fas fa-user"></i> Perfil <i class="fas fa-caret-down"></i>
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="perfilDropdown">
+                              <a class="dropdown-item"  href="pages/editar_perfil.html"><i class="fas fa-user-edit"></i> Editar Perfil</a>
+                              <a sec:authorize="hasRole('CLIENTE')" class="dropdown-item" href="#">
+                                  <i class="fas fa-calendar-alt"></i> Mis reservas
+                              </a>
+                              <a class="dropdown-item" sec:authorize="hasRole('PROPIETARIO')" href="pages/mis_publicaciones.html"><i class="fas fa-file-alt"></i> Mis Publicaciones</a>
+                              <a class="dropdown-item" href="pages/mensajes.html"><i class="fas fa-envelope"></i> Mensajes</a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+                          </div>
+                      </div>
+                  </li>
+              </ul>
+          </div>
+      </nav>
+  </div>
+</div>
+  
+  <!-- Navbar End -->
 
 <!-- Cuerpo publicar -->
         <div class="titulo">
